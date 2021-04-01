@@ -1,3 +1,4 @@
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <style>
   @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
@@ -258,7 +259,8 @@
 <h2>WoW Lithium</h2>
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form action="#">
+    <!-- <form action="https://wowlithium.herokuapp.com/api/v1/user" method="post"> -->
+    <form id="register">
       <h1>¡Crea tu Cuenta!</h1>
       <!-- <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -266,11 +268,11 @@
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div> -->
       <!-- <span>or use your email for registration</span> -->
-      <input type="text" placeholder="Usuario" />
-      <input type="email" placeholder="Correo" />
-      <input type="password" placeholder="Contrase&ntilde;a" />
-      <input type="password" placeholder="Confirma tu Contrase&ntilde;a" />
-      <button>Crear</button>
+      <input type="text" name="name" placeholder="Usuario" />
+      <input type="email" name="email" placeholder="Correo" />
+      <input type="password" name="password" placeholder="Contrase&ntilde;a" />
+      <input type="password" name="password2" placeholder="Confirma tu Contrase&ntilde;a" />
+      <button type="submit">Crear</button>
     </form>
   </div>
   <div class="form-container sign-in-container">
@@ -325,4 +327,46 @@
   signInButton.addEventListener('click', () => {
     container.classList.remove("right-panel-active");
   });
+
+  register.onsubmit = async (event) => {
+    event.preventDefault();
+    let user = new FormData(register);
+    user = Object.fromEntries(user.entries());
+
+    if (user.password !== user.password2) {
+      alert("Las contraseñas ingresadas no coinciden");
+      return;
+    }
+
+    delete user.password2;
+
+    try {
+      const result = await axios.post(
+        'http://localhost:3000/api/v1/user',
+        { user: user }
+      );
+
+      register.reset();
+      alert("Registro Completo");
+    }
+
+    catch (error) {
+      error.message = error.response.data.data.error;
+      console.log(error.message);
+
+      if (error.message.includes("Duplicate entry")) {
+
+        if (error.message.includes("username"))
+          alert("Esta cuenta ya ha sido registrada, intenta con otro nombre de usuario");
+
+        else if (error.message.includes("email"))
+          alert("Esta cuenta de correo ya ha sido registrada, intenta con otra cuenta de correo");
+      }
+
+      else {
+        alert(error.message);
+      }
+    }
+  }
+
 </script>
