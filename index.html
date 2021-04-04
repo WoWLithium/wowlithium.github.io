@@ -259,7 +259,7 @@
 <h2>WoW Lithium</h2>
 <div class="container" id="container">
   <div class="form-container sign-up-container">
-    <form id="register">
+    <form id="formSignUp">
       <h1>¡Crea tu Cuenta!</h1>
       <!-- <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -271,11 +271,11 @@
       <input type="email" name="email" placeholder="Correo" />
       <input type="password" name="password" placeholder="Contrase&ntilde;a" />
       <input type="password" name="password2" placeholder="Confirma tu Contrase&ntilde;a" />
-      <button type="submit">Crear</button>
+      <button>Crear</button>
     </form>
   </div>
   <div class="form-container sign-in-container">
-    <form action="#">
+    <form id="formSignIn" action="#">
       <h1>Iniciar Sesi&oacute;n</h1>
       <!-- <div class="social-container">
         <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -283,8 +283,8 @@
         <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
       </div> -->
       <!-- <span>or use your account</span> -->
-      <input type="user" placeholder="Usuario" />
-      <input type="password" placeholder="Contrase&ntilde;a" />
+      <input type="user" name="username" placeholder="Usuario" />
+      <input type="password" name="password" placeholder="Contrase&ntilde;a" />
       <a href="#">¿Olvidaste tu contrase&ntilde;a?</a>
       <button>Ingresar</button>
     </form>
@@ -327,44 +327,74 @@
     container.classList.remove("right-panel-active");
   });
 
-  register.onsubmit = async (event) => {
+  formSignUp.onsubmit = async (event) => {
     event.preventDefault();
-    let user = new FormData(register);
+    let message;
+    let user = new FormData(formSignUp);
     user = Object.fromEntries(user.entries());
 
-    if (user.password !== user.password2) {
-      alert("Las contraseñas ingresadas no coinciden");
-      return;
-    }
-
+    if (!user.name) message = "Ingresa tu nombre de cuenta";
+    else if (!user.email) message = "Ingresa tu cuenta de correo";
+    else if (!user.password) message = "Ingresa tu contraseña";
+    else if (!user.password2) message = "Ingresa la verificación de tu contraseña";
+    else if (user.password !== user.password2) message = "Las contraseñas ingresadas no coinciden";
+    if (message) { alert(message); return; }
     delete user.password2;
 
     try {
+      alert("Por favor espera mientras procesamos tu información");
+
       const result = await axios.post(
-        'https://wowlithium.herokuapp.com/api/v1/user',
+        'https://wowlithium.herokuapp.com/api/v1/users',
         { user: user }
       );
 
-      register.reset();
+      formSignUp.reset();
       alert("Registro Completo");
     }
 
     catch (error) {
+      if (!error.response) alert("Sin comunicación con el servicio de registro de cuentas");
+      error.message = error.response.data.data.error;
+
+      if (error.message.includes("Duplicate entry"))
+        if (error.message.includes("username"))
+          error.message = "Esta cuenta ya ha sido registrada, intenta con otro nombre para tu cuenta";
+        else if (error.message.includes("email"))
+          error.message = "Esta cuenta de correo ya ha sido registrada, intenta con otra cuenta de correo";
+
+      alert(error.message);
+    }
+  }
+
+  formSignIn.onsubmit = async () => {
+    event.preventDefault();
+    let message;
+    let login = new FormData(formSignIn);
+    login = Object.fromEntries(login.entries());
+
+    if (!login.username) message = "Ingresa tu usuario";
+    else if (!login.password) message = "Ingresa tu contraseña";
+    if (message) { alert(message); return; }
+
+    try {
+      alert("Por favor espera mientras procesamos tu información");
+
+      const result = await axios.post(
+        'https://wowlithium.herokuapp.com/api/v1/auth',
+        { login: login }
+      );
+
+      alert("Credenciales Correctas");
+      formSignIn.reset();
+    }
+
+    catch (error) {
+      if (!error.response) alert("Sin comunicación con el servicio de autenticación");
+
       error.message = error.response.data.data.error;
       console.log(error.message);
-
-      if (error.message.includes("Duplicate entry")) {
-
-        if (error.message.includes("username"))
-          alert("Esta cuenta ya ha sido registrada, intenta con otro nombre de usuario");
-
-        else if (error.message.includes("email"))
-          alert("Esta cuenta de correo ya ha sido registrada, intenta con otra cuenta de correo");
-      }
-
-      else {
-        alert(error.message);
-      }
+      alert(error.message);
     }
   }
 
