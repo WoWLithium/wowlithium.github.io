@@ -50,7 +50,7 @@ formSignUp.onsubmit = async (event) => {
   }
 }
 
-formSignIn.onsubmit = async () => {
+formSignIn.onsubmit = async (event) => {
   event.preventDefault();
   let message;
   let login = new FormData(formSignIn);
@@ -64,11 +64,21 @@ formSignIn.onsubmit = async () => {
     alert("Por favor espera mientras procesamos tu información");
 
     const result = await axios.post(
-      'https://wowlithium.herokuapp.com/api/v1/auth',
+      // 'https://wowlithium.herokuapp.com/api/v1/auth',
+      'http://localhost:3000/api/v1/auth',
       { login: login }
     );
 
-    alert("Credenciales Correctas");
+    if (result?.status == 200) {
+      // alert("Credenciales Correctas");
+      container.addEventListener('webkitAnimationEnd', (event) => {
+        container.style.display = 'none';
+      });
+
+      container.style.animationPlayState = 'running';
+    }
+
+    else alert("No hay información disponible para procesar");
     formSignIn.reset();
   }
 

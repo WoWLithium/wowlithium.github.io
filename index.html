@@ -2,72 +2,102 @@
 <html>
 
 <head>
-  <title>WoW Lithium</title>
-  <link rel="stylesheet" href="css/style.css">
+  <script src="js/import.js"></script>
+  <import tag="header" src="html/header.html"></import>
 </head>
 
-<h2>WoW Lithium</h2>
+<body>
+  <import src="html/elements.html"></import>
+  <div id="main-container">
+    <div id="_container">
+      <div class="container" id="container">
+        <div class="form-container sign-up-container">
+          <form id="formSignUp">
+            <h1>¡Crea tu Cuenta!</h1>
+            <!-- <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div> -->
+            <!-- <span>or use your email for registration</span> -->
+            <input type="text" name="name" placeholder="Usuario" />
+            <input type="email" name="email" placeholder="Correo" />
+            <input type="password" name="password" placeholder="Contrase&ntilde;a" />
+            <input type="password" name="password2" placeholder="Confirma tu Contrase&ntilde;a" />
+            <div class="confetti-btn inline-block position-relative js-confetti-btn">
+              <button class="button confetti-btn__btn btn btn--subtle js-confetti-btn__btn">Crear</button>
+              <svg color="red" class="confetti-btn__icon color-accent js-confetti-btn__icon" viewBox="0 0 16 16"
+                aria-hidden="true">
+                <circle class="conf-btn-svg-item-0" fill="currentColor" cx="8" cy="8" r="8" />
+                <path class="conf-btn-svg-item-1" fill="currentColor"
+                  d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z" />
+                <path class="conf-btn-svg-item-2" fill="currentColor"
+                  d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z" />
+                <path class="conf-btn-svg-item-3" fill="currentColor"
+                  d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z" />
+                <path class="conf-btn-svg-item-4" fill="currentColor"
+                  d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z" />
+                <path class="conf-btn-svg-item-5" fill="currentColor"
+                  d="M11.6.7A4.331,4.331,0,0,0,8,2.7,4.331,4.331,0,0,0,4.4.7,4.439,4.439,0,0,0,0,5.1C0,9.5,8,16,8,16s8-6.5,8-10.9A4.439,4.439,0,0,0,11.6.7Z" />
+              </svg>
+            </div>
+          </form>
+        </div>
+        <div class="form-container sign-in-container">
+          <form id="formSignIn" action="#">
+            <h1>Iniciar Sesi&oacute;n</h1>
+            <!-- <div class="social-container">
+            <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+          </div> -->
+            <!-- <span>or use your account</span> -->
+            <input type="user" name="username" placeholder="Usuario" />
+            <input type="password" name="password" placeholder="Contrase&ntilde;a" />
+            <a href="#">¿Olvidaste tu contrase&ntilde;a?</a>
 
-<img id="background" src="images/wallpaper.jpg" />
-<img id="voragine" src="images/voragine.png" />
-
-<div class="container" id="container">
-  <div class="form-container sign-up-container">
-    <form id="formSignUp">
-      <h1>¡Crea tu Cuenta!</h1>
-      <!-- <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-      </div> -->
-      <!-- <span>or use your email for registration</span> -->
-      <input type="text" name="name" placeholder="Usuario" />
-      <input type="email" name="email" placeholder="Correo" />
-      <input type="password" name="password" placeholder="Contrase&ntilde;a" />
-      <input type="password" name="password2" placeholder="Confirma tu Contrase&ntilde;a" />
-      <button>Crear</button>
-    </form>
-  </div>
-  <div class="form-container sign-in-container">
-    <form id="formSignIn" action="#">
-      <h1>Iniciar Sesi&oacute;n</h1>
-      <!-- <div class="social-container">
-        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-      </div> -->
-      <!-- <span>or use your account</span> -->
-      <input type="user" name="username" placeholder="Usuario" />
-      <input type="password" name="password" placeholder="Contrase&ntilde;a" />
-      <a href="#">¿Olvidaste tu contrase&ntilde;a?</a>
-      <button>Ingresar</button>
-    </form>
-  </div>
-  <div class="overlay-container">
-    <div class="overlay">
-      <div class="overlay-panel overlay-left">
-        <h1>Ingresa a tu Cuenta</h1>
-        <p>Para mantenerte conectado con nosotros, inicia sesi&oacute;n con tu informaci&oacute;n personal</p>
-        <button class="ghost" id="signIn">Iniciar Sesi&oacute;n</button>
-      </div>
-      <div class="overlay-panel overlay-right">
-        <h1>Hola :)</h1>
-        <p>&Uacute;nete a nuestra comunidad, ¡Bienvenido!</p>
-        <button class="ghost" id="signUp">Registrarme</button>
+            <div class="confetti-btn inline-block position-relative js-confetti-btn">
+              <button class="button confetti-btn__btn btn btn--subtle js-confetti-btn__btn">Ingresar</button>
+              <svg color="#FFD444" class="confetti-btn__icon color-warning js-confetti-btn__icon" viewBox="0 0 16 16"
+                aria-hidden="true">
+                <circle class="conf-btn-svg-item-0" fill="currentColor" cx="8" cy="8" r="8" />
+                <path class="conf-btn-svg-item-1" fill="currentColor"
+                  d="M15.836,5.693a.5.5,0,0,0-.4-.34l-4.827-.7L8.448.279a.519.519,0,0,0-.9,0L5.394,4.651l-4.826.7a.5.5,0,0,0-.277.853l3.492,3.4-.825,4.806A.5.5,0,0,0,3.451,15a.493.493,0,0,0,.233-.058L8,12.673l4.316,2.269a.5.5,0,0,0,.726-.527l-.825-4.806,3.492-3.4A.5.5,0,0,0,15.836,5.693Z" />
+                <path class="conf-btn-svg-item-2" fill="currentColor"
+                  d="M15.836,5.693a.5.5,0,0,0-.4-.34l-4.827-.7L8.448.279a.519.519,0,0,0-.9,0L5.394,4.651l-4.826.7a.5.5,0,0,0-.277.853l3.492,3.4-.825,4.806A.5.5,0,0,0,3.451,15a.493.493,0,0,0,.233-.058L8,12.673l4.316,2.269a.5.5,0,0,0,.726-.527l-.825-4.806,3.492-3.4A.5.5,0,0,0,15.836,5.693Z" />
+                <path class="conf-btn-svg-item-3" fill="currentColor"
+                  d="M15.836,5.693a.5.5,0,0,0-.4-.34l-4.827-.7L8.448.279a.519.519,0,0,0-.9,0L5.394,4.651l-4.826.7a.5.5,0,0,0-.277.853l3.492,3.4-.825,4.806A.5.5,0,0,0,3.451,15a.493.493,0,0,0,.233-.058L8,12.673l4.316,2.269a.5.5,0,0,0,.726-.527l-.825-4.806,3.492-3.4A.5.5,0,0,0,15.836,5.693Z" />
+                <path class="conf-btn-svg-item-4" fill="currentColor"
+                  d="M15.836,5.693a.5.5,0,0,0-.4-.34l-4.827-.7L8.448.279a.519.519,0,0,0-.9,0L5.394,4.651l-4.826.7a.5.5,0,0,0-.277.853l3.492,3.4-.825,4.806A.5.5,0,0,0,3.451,15a.493.493,0,0,0,.233-.058L8,12.673l4.316,2.269a.5.5,0,0,0,.726-.527l-.825-4.806,3.492-3.4A.5.5,0,0,0,15.836,5.693Z" />
+                <path class="conf-btn-svg-item-5" fill="currentColor"
+                  d="M15.836,5.693a.5.5,0,0,0-.4-.34l-4.827-.7L8.448.279a.519.519,0,0,0-.9,0L5.394,4.651l-4.826.7a.5.5,0,0,0-.277.853l3.492,3.4-.825,4.806A.5.5,0,0,0,3.451,15a.493.493,0,0,0,.233-.058L8,12.673l4.316,2.269a.5.5,0,0,0,.726-.527l-.825-4.806,3.492-3.4A.5.5,0,0,0,15.836,5.693Z" />
+              </svg>
+            </div>
+          </form>
+        </div>
+        <div class="overlay-container">
+          <div class="overlay">
+            <div class="overlay-panel overlay-left">
+              <h1>Ingresa a tu Cuenta</h1>
+              <p>Para mantenerte conectado con nosotros, inicia sesi&oacute;n con tu informaci&oacute;n personal</p>
+              <button class="button button-ghost" id="signIn">Iniciar Sesi&oacute;n</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+              <h1>Hola :)</h1>
+              <p>&Uacute;nete a nuestra comunidad, ¡Bienvenid@!</p>
+              <button class="button button-ghost" id="signUp">Registrarme</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
+</body>
 
-<footer>
-  <script src="js/home.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- <p>
-      Created with <i class="fa fa-heart"></i> by
-      <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
-      - Read how I created this and how you can join the challenge
-      <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
-    </p> -->
-</footer>
+<import tag="footer" src="html/footer.html"></import>
+
+<script>
+  includeHTML();
+</script>
 
 </html>

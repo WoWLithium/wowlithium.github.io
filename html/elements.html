@@ -1,0 +1,26 @@
+<img id="background" src="images/wallpaper.jpg" />
+<img id="voragine" src="images/voragine.png" />
+
+<div id="nav">
+  <img id="nav-logo" src="images/logo-wowlithium.svg" />
+
+  <div id="menu">
+    <a href="index">Inicio</a>
+    <!-- <a href="#addons">Addons</a> -->
+    <a href="downloads">Descargas</a>
+  </div>
+
+  <img id="nav-tribal-left" src="images/tribal.svg" />
+  <img id="nav-tribal-right" src="images/tribal.svg" />
+</div>
+
+<script>
+  let option, url, path;
+  url = document.createElement('a');
+  url.href = window.location.href;
+  if (url.pathname == '/') path = 'index';
+  else if (/\.html$/g.test(url.pathname)) path = url.pathname.slice(1, -5);
+  else path = url.pathname.slice(1);
+  option = document.querySelector(`#menu > a[href=${path}]`);
+  option.setAttribute("class", "active");
+</script>
