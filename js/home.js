@@ -70,12 +70,13 @@ formSignIn.onsubmit = async (event) => {
     );
 
     if (result?.status == 200) {
-      // alert("Credenciales Correctas");
+      alert("Credenciales Correctas");
+      /*
       container.addEventListener('webkitAnimationEnd', (event) => {
         container.style.display = 'none';
       });
 
-      container.style.animationPlayState = 'running';
+      container.style.animationPlayState = 'running';*/
     }
 
     else alert("No hay información disponible para procesar");
