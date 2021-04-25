@@ -64,8 +64,8 @@ formSignIn.onsubmit = async (event) => {
     alert("Por favor espera mientras procesamos tu información");
 
     const result = await axios.post(
-      // 'https://wowlithium.herokuapp.com/api/v1/auth',
-      'http://localhost:3000/api/v1/auth',
+      'https://wowlithium.herokuapp.com/api/v1/auth',
+      // 'http://localhost:3000/api/v1/auth',
       { login: login }
     );
 
